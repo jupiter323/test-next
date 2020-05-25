@@ -74,18 +74,22 @@ const Home = (props) => {
 
 Home.getInitialProps = async ({ query }) => {
     const page = query.page || 1;
-    const url = `http://dev.api.clearchoiceprep.info/api/lessons?page=${page}`
+    const url = `https://gorest.co.in/public-api/posts?_format=json&access-token=cxzNs8fYiyxlk708IHfveKM1z1xxYZw99fYE&page=${page}`
     const config = {
         headers: {
-          'X-Dev-User-Id': '53f24b85-94da-4bf2-882b-3ff5ca16d86f'
+          'X-Dev-User-Id': '53f24b85-94da-4bf2-882b-3ff5ca16d86f',    
         }
       }
       
     const posts = await axios.get(url, null, config);
     return {
-        pageCount: posts.data.pages,
-        currentPage: posts.data.current_page,
-        posts: posts.data.lessons,
+        // pageCount: posts.data.pages,
+        // currentPage: posts.data.current_page,
+        // posts: posts.data.lessons,
+        // isLoading: false,
+        pageCount: posts.data._meta.pageCount,
+        currentPage: posts.data._meta.currentPage,
+        posts: posts.data.result,
         isLoading: false,
     };
 }
