@@ -81,18 +81,13 @@ Home.getInitialProps = async ({ query }) => {
         }
       }
       
-    let posts = await axios.get(url, config);
-    console.log(posts.data)
+    let posts = await axios.get(url, config);   
 
     return {
         pageCount: posts.data.data.pages,
         currentPage: posts.data.data.current_page,
         posts: posts.data.data.lessons,
-        isLoading: false,
-        // pageCount: posts.data._meta.pageCount,
-        // currentPage: posts.data._meta.currentPage,
-        // posts: posts.data.result,
-        // isLoading: false,
+        isLoading: false,       
     };
 }
 
